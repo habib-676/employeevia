@@ -1,0 +1,38 @@
+[
+  {
+    "id": 1,
+    "title": "Digital Marketing Solutions",
+    "description": "Boost your brand's online presence with our comprehensive SEO, content marketing, and social media strategies.",
+    "image": "https://i.ibb.co/605SFBQm/computer-worker.png"
+  },
+  {
+    "id": 2,
+    "title": "Customer Support Outsourcing",
+    "description": "Outsource your customer service to our expert team available 24/7 to ensure top-tier customer satisfaction.",
+    "image": "https://i.ibb.co/nsB95qCJ/customer-service.png"
+  },
+  {
+    "id": 3,
+    "title": "Sales Support Services",
+    "description": "Enhance your sales operations with lead generation, CRM management, and follow-up services.",
+    "image": "https://i.ibb.co/RR93Pmk/growth.png"
+  },
+  {
+    "id": 4,
+    "title": "Administrative Assistance",
+    "description": "Delegate your daily business tasks to our professional virtual assistants for increased efficiency and focus.",
+    "image": "https://i.ibb.co/tTfwCYvG/consultant-15560064.png"
+  },
+  {
+    "id": 5,
+    "title": "Content Creation & Management",
+    "description": "Get high-quality content tailored for your brand, including blogs, articles, copywriting, and editing services.",
+    "image": "https://i.ibb.co/7tZtCrVS/writer.png"
+  },
+  {
+    "id": 6,
+    "title": "IT & Technical Support",
+    "description": "Reliable remote IT services for troubleshooting, system maintenance, and network monitoring.",
+    "image": "https://i.ibb.co/7d17G6v0/help.png"
+  }
+]
