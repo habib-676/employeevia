@@ -5,7 +5,7 @@ import { Link, NavLink } from "react-router";
 const Navbar = () => {
   return (
     <Container>
-      <div className="pt-5 flex items-center justify-between">
+      <div className="pt-5 pb-2 flex items-center justify-between">
         <div className="border rounded-3xl py-2 px-10">
           <Logo />
         </div>
