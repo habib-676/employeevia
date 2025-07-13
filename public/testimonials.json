@@ -1,0 +1,26 @@
+[
+  {
+    "id": 1,
+    "name": "John Doe",
+    "title": "CEO, Tech Solutions",
+    "quote": "This company has transformed the way we do business. Their support has been invaluable! We’ve achieved great success working with them.",
+    "rating": 5,
+    "image": "https://i.ibb.co/CKbrmzWj/5677.jpg"
+  },
+  {
+    "id": 2,
+    "name": "Jane Smith",
+    "title": "Marketing Manager, Global Tech",
+    "quote": "We saw a 30% increase in engagement and a boost in our brand presence after collaborating with this amazing team. Highly recommended!",
+    "rating": 4,
+    "image": "https://i.ibb.co/NdH2cN1v/2148946287.jpg"
+  },
+  {
+    "id": 3,
+    "name": "Michael Brown",
+    "title": "Founder, Brown Innovations",
+    "quote": "The services provided by this company were a game-changer for us. Their solutions are tailored and incredibly effective.",
+    "rating": 5,
+    "image": "https://i.ibb.co/wZ0p3TkX/2148221808.jpg"
+  }
+]
