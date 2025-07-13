@@ -11,7 +11,7 @@ const Navbar = () => {
           <NavLink>Contact us</NavLink>
           <NavLink to="dashboard">Dashboard</NavLink>
         </div>
-        <Link>Sign up</Link>
+        <Link to={'auth/register'}>Sign up</Link>
       </div>
       <div className="border rounded-3xl py-2 px-5">Image</div>
     </div>

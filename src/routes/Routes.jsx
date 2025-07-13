@@ -5,6 +5,9 @@ import DashboardLayout from "../layouts/DashboardLayout";
 import Worksheet from "../pages/Dashboard/Employee-pages/work-sheet/Worksheet";
 import PaymentHistory from "../pages/Dashboard/Employee-pages/payment-history/PaymentHistory";
 import Employees from "../pages/Dashboard/HR-pages/employee-list/Employees";
+import AuthLayout from "../layouts/AuthLayout";
+import Login from "../pages/Auth-pages/Login";
+import Register from "../pages/Auth-pages/Register";
 
 export const router = createBrowserRouter([
   {
@@ -40,6 +43,24 @@ export const router = createBrowserRouter([
       {
         path: "employee-list",
         element: <Employees></Employees>,
+      },
+    ],
+  },
+  {
+    path: "auth",
+    element: <AuthLayout></AuthLayout>,
+    children: [
+      {
+        index: true,
+        element: <div>error</div>,
+      },
+      {
+        path: "login",
+        Component: Login,
+      },
+      {
+        path: "register",
+        Component: Register,
       },
     ],
   },
