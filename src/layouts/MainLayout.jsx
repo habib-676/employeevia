@@ -8,7 +8,7 @@ const MainLayout = () => {
       <div className="sticky top-0 z-50">
         <Navbar />
       </div>
-      <div className=" min-h-[calc(100vh-68px)]">
+      <div className=" min-h-[calc(100vh-68px)] mb-28">
         <Outlet />
       </div>
       <Footer />

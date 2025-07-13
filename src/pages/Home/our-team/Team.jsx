@@ -12,7 +12,7 @@ const Team = ({ teamPromise }) => {
           Real people behind the scenes
         </p>
         <div className="card-body card shadow-2xl bg-base-200 border border-primary mt-10 min-h-[60vh]">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 mt-10">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 mt-10">
             {teamData.map((person) => (
               <Person key={person.id} person={person}></Person>
             ))}
