@@ -1,0 +1,23 @@
+[
+  {
+    "id": 1,
+    "name": "Ariana Steele",
+    "role": "Chief Executive Officer",
+    "photo": "https://i.ibb.co/h1ss5FxH/104422.jpg",
+    "quote": "Leading with vision and building a culture of innovation."
+  },
+  {
+    "id": 2,
+    "name": "Habib",
+    "role": "HR Director",
+    "photo": "https://i.ibb.co/nMsTfw4f/Screenshot-2025-07-13-220754.png",
+    "quote": "People are our greatest asset — we grow together."
+  },
+  {
+    "id": 3,
+    "name": "Rahul Dey",
+    "role": "Technical Lead",
+    "photo": "https://i.ibb.co/k2BGyQ39/786.jpg",
+    "quote": "Empowering teams through clean code and clear communication."
+  }
+]
