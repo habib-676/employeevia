@@ -13,13 +13,13 @@ const Footer = () => {
         </p>
       </aside>
       <nav className="grid-flow-col gap-4 md:place-self-center md:justify-self-end *:hover:text-accent *:hover:scale-120 *:transition-all *:duration-200">
-        <Link>
+        <Link to={"https://github.com/habib-676"} target="_blank">
           <FaGithub size={20} />
         </Link>
-        <Link>
+        <Link to={"https://www.linkedin.com/in/676-habib"} target="_blank">
           <FaLinkedin size={20} />
         </Link>
-        <Link>
+        <Link to={"https://www.facebook.com/habib676"} target="_blank">
           <FaFacebook size={20} />
         </Link>
       </nav>
