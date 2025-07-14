@@ -1,27 +1,35 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { toast } from "react-hot-toast";
 import useAuth from "../../../../hooks/useAuth";
-// import { addWork, getWorks, updateWork, deleteWork } from "../api/worksheet";
 import EditModal from "./EditModal";
 import WorkTable from "./WorkTable";
 import WorkForm from "./WorkForm";
 import { addWork, getWorks } from "../../../../api/utils";
+import { useQuery, useQueryClient } from "@tanstack/react-query";
+import LoadingSpinner from "../../../../components/Shared/Animation/LoadingSpinner";
 
 export default function WorkSheet() {
   const { user } = useAuth();
-  const [works, setWorks] = useState([]);
   const [editData, setEditData] = useState(null);
+  const queryClient = useQueryClient();
 
-  useEffect(() => {
-    if (user?.email) {
-      getWorks(user.email).then((res) => setWorks(res.data.reverse()));
-    }
-  }, [user]);
+  const { isPending, data: works = [] } = useQuery({
+    queryKey: ["works", user?.email],
+    queryFn: () => getWorks(user.email).then((res) => res.data),
+    enabled: !!user?.email,
+  });
+
+  if (isPending) return <LoadingSpinner />;
 
   const handleAdd = async (data) => {
     const newData = { ...data, email: user.email };
     const res = await addWork(newData);
-    setWorks([res.data, ...works]);
+
+    // ✅ Immediately update the local cache for a snappy UI
+    queryClient.setQueryData(["works", user.email], (old = []) => [
+      res.data,
+      ...old,
+    ]);
     toast.success("Data Added");
   };
 
