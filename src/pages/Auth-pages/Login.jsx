@@ -6,6 +6,7 @@ import HoverUnderlineText from "../../components/Shared/Animation/HoverUnderline
 import useAuth from "../../hooks/useAuth";
 import LoadingSpinner from "../../components/Shared/Animation/LoadingSpinner";
 import toast from "react-hot-toast";
+import { setUserInDb } from "../../api/utils";
 
 const Login = () => {
   const { signIn, signInWithGoogle, loading, user } = useAuth();
@@ -39,7 +40,7 @@ const Login = () => {
 
       console.log(userData);
       // update user
-      // await setUserInDb(userData);
+      await setUserInDb(userData);
 
       navigate(from, { replace: true });
       toast.success("Login Successful");
@@ -62,7 +63,7 @@ const Login = () => {
 
       console.log(userData);
       // update user
-      // await setUserInDb(userData);
+      await setUserInDb(userData);
 
       navigate(from, { replace: true });
       toast.success("Login Successful");

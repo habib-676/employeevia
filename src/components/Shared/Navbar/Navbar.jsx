@@ -11,7 +11,7 @@ const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   const handleLogOut = () => {
-    logOut;
+    logOut();
     toast.success("Successfully Logged Out");
   };
   return (

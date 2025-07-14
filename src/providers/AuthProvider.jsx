@@ -37,7 +37,7 @@ const AuthProvider = ({ children }) => {
 
   const logOut = async () => {
     setLoading(true);
-    return signOut(auth);
+    return await signOut(auth);
   };
 
   const updateUserProfile = (name, photo) => {

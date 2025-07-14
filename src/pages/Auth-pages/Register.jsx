@@ -3,7 +3,7 @@ import { FcGoogle } from "react-icons/fc";
 import { Link, useNavigate } from "react-router";
 import HoverUnderlineText from "../../components/Shared/Animation/HoverUnderlineText";
 import useAuth from "../../hooks/useAuth";
-import { imageUpload } from "../../api/utils";
+import { imageUpload, setUserInDb } from "../../api/utils";
 import toast from "react-hot-toast";
 import { TbFidgetSpinner } from "react-icons/tb";
 
@@ -29,13 +29,13 @@ const Register = () => {
       await updateUserProfile(data.name, imageUrl);
 
       // update user data in db
-      // const userData = {
-      //   name,
-      //   email,
-      //   image: imageUrl,
-      // };
+      const userData = {
+        name: data.name,
+        email: data.email,
+        image: imageUrl,
+      };
 
-      // await setUserInDb(userData);
+      await setUserInDb(userData);
 
       console.log(result);
 
@@ -61,7 +61,7 @@ const Register = () => {
 
       console.log(userData);
 
-      // await setUserInDb(userData);
+      await setUserInDb(userData);
 
       navigate("/");
       toast.success("Signup Successful");
