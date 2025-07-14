@@ -77,7 +77,7 @@ const Register = () => {
         <div className="mb-6 text-center">
           <h1 className="text-4xl font-bold text-primary">Sign Up</h1>
           <p className="text-sm text-base-content opacity-70">
-            Welcome to PlantNet
+            Welcome to EmployeeVia
           </p>
         </div>
 
@@ -154,6 +154,11 @@ const Register = () => {
                 minLength: {
                   value: 6,
                   message: "Password must be at least 6 characters",
+                },
+                pattern: {
+                  value: /^(?=.*[A-Z])(?=.*[!@#$%^&*])/,
+                  message:
+                    "Password must contain at least one capital letter and one special character",
                 },
               })}
             />

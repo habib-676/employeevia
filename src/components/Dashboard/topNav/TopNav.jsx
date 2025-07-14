@@ -1,9 +1,11 @@
 import { FaBars } from "react-icons/fa";
 import { useState } from "react";
 import Logo from "../../Shared/logo/Logo";
+import useAuth from "../../../hooks/useAuth";
 
 const TopNav = ({ toggleSidebar }) => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
+  const { user } = useAuth();
 
   return (
     <div className=" shadow-md xl:px-20 md:px-10 sm:px-2 px-4 py-3 flex items-center justify-between">
@@ -17,9 +19,9 @@ const TopNav = ({ toggleSidebar }) => {
       <div className="ml-auto relative">
         <img
           onClick={() => setDropdownOpen(!dropdownOpen)}
-          src="https://i.pravatar.cc/40"
+          src={user?.photoURL}
           alt="User"
-          className="w-10 h-10 rounded-full cursor-pointer"
+          className="w-10 h-10 rounded-full cursor-pointer object-cover"
         />
 
         {dropdownOpen && (

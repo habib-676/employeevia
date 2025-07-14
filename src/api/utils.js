@@ -18,3 +18,9 @@ export const setUserInDb = async (user) => {
   const { data } = axios.post(`${import.meta.env.VITE_API_URL}/users`, user);
   console.log(data);
 };
+
+// work related apis
+
+export const addWork = (workData) => {
+  return axios.post(`${import.meta.env.VITE_API_URL}/works`, workData);
+};
