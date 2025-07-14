@@ -5,18 +5,18 @@ import useAuth from "../../../../hooks/useAuth";
 import EditModal from "./EditModal";
 import WorkTable from "./WorkTable";
 import WorkForm from "./WorkForm";
-import { addWork } from "../../../../api/utils";
+import { addWork, getWorks } from "../../../../api/utils";
 
 export default function WorkSheet() {
   const { user } = useAuth();
   const [works, setWorks] = useState([]);
   const [editData, setEditData] = useState(null);
 
-  // useEffect(() => {
-  //   if (user?.email) {
-  //     getWorks(user.email).then((res) => setWorks(res.data.reverse()));
-  //   }
-  // }, [user]);
+  useEffect(() => {
+    if (user?.email) {
+      getWorks(user.email).then((res) => setWorks(res.data.reverse()));
+    }
+  }, [user]);
 
   const handleAdd = async (data) => {
     const newData = { ...data, email: user.email };
