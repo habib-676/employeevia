@@ -1,9 +1,17 @@
-import { FaMoneyBillWave, FaRegFileAlt, FaSignOutAlt } from "react-icons/fa";
+import {
+  FaMoneyBillWave,
+  FaRegFileAlt,
+  FaSignOutAlt,
+  FaUsers,
+} from "react-icons/fa";
 import { NavLink } from "react-router";
 import { IoMdClose } from "react-icons/io";
 import Logo from "../../Shared/logo/Logo";
+import useAuth from "../../../hooks/useAuth";
+import HoverUnderlineText from "../../Shared/Animation/HoverUnderlineText";
 
 const Sidebar = ({ isOpen, toggleSidebar }) => {
+  const { logOut } = useAuth();
   return (
     <>
       {/* Overlay for mobile */}
@@ -34,18 +42,31 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
         <nav className="space-y-4">
           <NavLink
             to="work-sheet"
-            className="flex items-center gap-3 text-gray-700 hover:text-blue-600"
+            className="flex items-center gap-3 text-secondary-content hover:text-secondary"
           >
-            <FaRegFileAlt /> Worksheet
+            <FaRegFileAlt /> <HoverUnderlineText>Worksheet</HoverUnderlineText>
           </NavLink>
           <NavLink
             to="payment-history"
-            className="flex items-center gap-3 text-gray-700 hover:text-blue-600"
+            className="flex items-center gap-3 text-secondary-content hover:text-secondary"
           >
-            <FaMoneyBillWave /> Payment History
+            <FaMoneyBillWave />{" "}
+            <HoverUnderlineText>Payment History</HoverUnderlineText>
           </NavLink>
-          <NavLink className="flex items-center gap-3 text-gray-700 hover:text-red-500">
-            <FaSignOutAlt /> Logout
+          <NavLink
+            to="employee-list"
+            className="flex items-center gap-3 text-secondary-content hover:text-secondary"
+          >
+            <FaUsers /> <HoverUnderlineText>Employee List</HoverUnderlineText>
+          </NavLink>
+
+          {/* logout */}
+          <NavLink
+            to={"/"}
+            onClick={logOut}
+            className="flex items-center gap-3 text-secondary-content hover:text-red-500"
+          >
+            <FaSignOutAlt /> <HoverUnderlineText>Logout</HoverUnderlineText>
           </NavLink>
         </nav>
       </aside>

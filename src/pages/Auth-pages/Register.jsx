@@ -6,7 +6,11 @@ import useAuth from "../../hooks/useAuth";
 import { imageUpload, setUserInDb } from "../../api/utils";
 import toast from "react-hot-toast";
 import { TbFidgetSpinner } from "react-icons/tb";
+import { useState } from "react";
+import { Listbox } from "@headlessui/react";
+import { IoIosArrowDown } from "react-icons/io";
 
+const roles = ["employee", "hr"];
 const Register = () => {
   const { createUser, updateUserProfile, signInWithGoogle, loading } =
     useAuth();
@@ -17,10 +21,13 @@ const Register = () => {
     formState: { errors },
   } = useForm();
 
+  const [selectedRole, setSelectedRole] = useState(roles[0]);
+
   const onSubmit = async (data) => {
     console.log("Form Submitted:", data);
     const image = data.image[0];
     const imageUrl = await imageUpload(image);
+
     try {
       //2. User Registration
       const result = await createUser(data.email, data.password);
@@ -33,6 +40,10 @@ const Register = () => {
         name: data.name,
         email: data.email,
         image: imageUrl,
+        role: selectedRole,
+        bank_account_no: data.bank_account_no,
+        salary: parseFloat(data.salary),
+        designation: data.designation,
       };
 
       await setUserInDb(userData);
@@ -57,6 +68,10 @@ const Register = () => {
         name: result?.user?.displayName,
         email: result?.user?.email,
         image: result?.user?.photoURL,
+        role: "employee",
+        bank_account_no: 11111111111,
+        salary: 10000,
+        designation: "fresher",
       };
 
       console.log(userData);
@@ -72,40 +87,115 @@ const Register = () => {
   };
 
   return (
-    <div className=" flex justify-center mb-20 items-center bg-base-100">
-      <div className="w-full max-w-md p-8 rounded-box shadow-lg bg-base-200 text-base-content">
+    <div className="flex justify-center mb-20 items-center bg-base-100 min-h-screen">
+      <div className="w-full max-w-md p-8 rounded-box shadow-xl bg-base-200 text-base-content">
+        {/* Header */}
         <div className="mb-6 text-center">
           <h1 className="text-4xl font-bold text-primary">Sign Up</h1>
-          <p className="text-sm text-base-content opacity-70">
-            Welcome to EmployeeVia
-          </p>
+          <p className="text-sm opacity-70">Welcome to EmployeeVia</p>
         </div>
 
-        <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
-          {/* Name */}
-          <div>
-            <label htmlFor="name" className="label-text">
-              Name
-            </label>
-            <input
-              id="name"
-              type="text"
-              placeholder="Enter your name"
-              className="input input-bordered w-full"
-              {...register("name", { required: "Name is required" })}
-            />
-            {errors.name && (
-              <p className="text-error text-sm">{errors.name.message}</p>
-            )}
-          </div>
+        {/* Form */}
+        <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
+          {/* Fieldset: Name & Designation */}
+          <fieldset className="border border-base-300 p-4 rounded">
+            <legend className="text-sm font-medium text-base-content mb-2">
+              Basic Info
+            </legend>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              {/* Name */}
+              <div>
+                <label className="label-text">Name</label>
+                <input
+                  type="text"
+                  className="input input-bordered w-full"
+                  {...register("name", { required: "Name is required" })}
+                  placeholder="Enter your name"
+                />
+                {errors.name && (
+                  <p className="text-error text-sm">{errors.name.message}</p>
+                )}
+              </div>
 
-          {/* Image */}
+              {/* Designation */}
+              <div>
+                <label className="label-text">Designation</label>
+                <input
+                  type="text"
+                  className="input input-bordered w-full"
+                  {...register("designation", {
+                    required: "Designation is required",
+                  })}
+                  placeholder="Enter your designation"
+                />
+                {errors.designation && (
+                  <p className="text-error text-sm">
+                    {errors.designation.message}
+                  </p>
+                )}
+              </div>
+            </div>
+          </fieldset>
+
+          {/* Fieldset: Email & Password */}
+          <fieldset className="border border-base-300 p-4 rounded">
+            <legend className="text-sm font-medium text-base-content mb-2">
+              Credentials
+            </legend>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              {/* Email */}
+              <div>
+                <label className="label-text">Email</label>
+                <input
+                  type="email"
+                  className="input input-bordered w-full"
+                  {...register("email", {
+                    required: "Email is required",
+                    pattern: {
+                      value: /^\S+@\S+$/i,
+                      message: "Invalid email format",
+                    },
+                  })}
+                  placeholder="Enter your email"
+                />
+                {errors.email && (
+                  <p className="text-error text-sm">{errors.email.message}</p>
+                )}
+              </div>
+
+              {/* Password */}
+              <div>
+                <label className="label-text">Password</label>
+                <input
+                  type="password"
+                  className="input input-bordered w-full"
+                  {...register("password", {
+                    required: "Password is required",
+                    minLength: {
+                      value: 6,
+                      message: "Password must be at least 6 characters",
+                    },
+                    pattern: {
+                      value: /^(?=.*[A-Z])(?=.*[!@#$%^&*])/,
+                      message:
+                        "Password must contain at least one capital letter and one special character",
+                    },
+                  })}
+                  placeholder="Enter your password"
+                />
+                {errors.password && (
+                  <p className="text-error text-sm">
+                    {errors.password.message}
+                  </p>
+                )}
+              </div>
+            </div>
+          </fieldset>
+
+          {/* Profile Image */}
           <div>
-            <label htmlFor="image" className="label-text">
-              Profile Image
-            </label>
+            <label className="label-text">Profile Image</label>
             <input
-              id="image"
               type="file"
               accept="image/*"
               {...register("image", { required: "Image is required" })}
@@ -116,54 +206,72 @@ const Register = () => {
             )}
           </div>
 
-          {/* Email */}
-          <div>
-            <label htmlFor="email" className="label-text">
-              Email
-            </label>
-            <input
-              id="email"
-              type="email"
-              placeholder="Enter your email"
-              className="input input-bordered w-full"
-              {...register("email", {
-                required: "Email is required",
-                pattern: {
-                  value: /^\S+@\S+$/i,
-                  message: "Invalid email format",
-                },
-              })}
-            />
-            {errors.email && (
-              <p className="text-error text-sm">{errors.email.message}</p>
-            )}
-          </div>
+          {/* Fieldset: Bank Account & Role */}
+          <fieldset className="border border-base-300 p-4 rounded">
+            <legend className="text-sm font-medium text-base-content mb-2">
+              Employment Details
+            </legend>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              {/* Bank Account */}
+              <div>
+                <label className="label-text">Bank Account No</label>
+                <input
+                  type="text"
+                  className="input input-bordered w-full"
+                  {...register("bank_account_no", {
+                    required: "Bank account is required",
+                  })}
+                  placeholder="Enter your bank account number"
+                />
+                {errors.bank_account_no && (
+                  <p className="text-error text-sm">
+                    {errors.bank_account_no.message}
+                  </p>
+                )}
+              </div>
 
-          {/* Password */}
+              {/* Role Dropdown */}
+              <div>
+                <label className="label-text mb-1 block">Select Role</label>
+                <Listbox value={selectedRole} onChange={setSelectedRole}>
+                  <div className="relative">
+                    <Listbox.Button className="input input-bordered w-full flex justify-between items-center">
+                      {selectedRole}
+                      <IoIosArrowDown />
+                    </Listbox.Button>
+                    <Listbox.Options className="absolute z-10 mt-1 w-full bg-base-200 border rounded shadow-md">
+                      {roles.map((role) => (
+                        <Listbox.Option
+                          key={role}
+                          value={role}
+                          className={({ active }) =>
+                            `cursor-pointer px-4 py-2 ${
+                              active ? "bg-primary text-white" : ""
+                            }`
+                          }
+                        >
+                          {role}
+                        </Listbox.Option>
+                      ))}
+                    </Listbox.Options>
+                  </div>
+                </Listbox>
+              </div>
+            </div>
+          </fieldset>
+
+          {/* Salary */}
           <div>
-            <label htmlFor="password" className="label-text">
-              Password
-            </label>
+            <label className="label-text">Salary</label>
             <input
-              id="password"
-              type="password"
-              placeholder="Enter a password"
+              type="number"
+              step="any"
               className="input input-bordered w-full"
-              {...register("password", {
-                required: "Password is required",
-                minLength: {
-                  value: 6,
-                  message: "Password must be at least 6 characters",
-                },
-                pattern: {
-                  value: /^(?=.*[A-Z])(?=.*[!@#$%^&*])/,
-                  message:
-                    "Password must contain at least one capital letter and one special character",
-                },
-              })}
+              {...register("salary", { required: "Salary is required" })}
+              placeholder="Enter your salary"
             />
-            {errors.password && (
-              <p className="text-error text-sm">{errors.password.message}</p>
+            {errors.salary && (
+              <p className="text-error text-sm">{errors.salary.message}</p>
             )}
           </div>
 
@@ -177,8 +285,10 @@ const Register = () => {
           </button>
         </form>
 
-        {/* Social Login */}
+        {/* Divider */}
         <div className="divider">OR</div>
+
+        {/* Google Sign In */}
         <button
           type="button"
           className="btn btn-outline w-full flex items-center gap-2"
@@ -188,8 +298,8 @@ const Register = () => {
           Continue with Google
         </button>
 
-        {/* Footer Link */}
-        <p className="mt-4 text-sm text-center text-base-content">
+        {/* Footer */}
+        <p className="mt-4 text-sm text-center">
           Already have an account?{" "}
           <Link to="/auth/login" className="text-secondary hover:underline">
             <HoverUnderlineText>Login</HoverUnderlineText>

@@ -13,7 +13,7 @@ const DashboardLayout = () => {
   return (
     <div className="min-h-screen relative flex ">
       {/* Sidebar */}
-      <div  className="">
+      <div className="">
         <Sidebar isOpen={isSidebarOpen} toggleSidebar={toggleSidebar} />
       </div>
 
