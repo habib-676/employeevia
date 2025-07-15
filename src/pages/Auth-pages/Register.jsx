@@ -216,7 +216,7 @@ const Register = () => {
               <div>
                 <label className="label-text">Bank Account No</label>
                 <input
-                  type="text"
+                  type="number"
                   className="input input-bordered w-full"
                   {...register("bank_account_no", {
                     required: "Bank account is required",

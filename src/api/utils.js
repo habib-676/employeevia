@@ -36,3 +36,7 @@ export const updateWork = (id, data) => {
 export const deleteWork = (id) => {
   return axios.delete(`${import.meta.env.VITE_API_URL}/works/${id}`);
 };
+
+export const getEmployees = async () => {
+  return await axios(`${import.meta.env.VITE_API_URL}/employees`);
+};
