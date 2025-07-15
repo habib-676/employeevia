@@ -42,8 +42,8 @@ export default function WorkTable({ data, onEdit, onDelete }) {
   });
 
   return (
-    <div className="overflow-x-auto mt-6">
-      <table className="table table-zebra">
+    <div className="overflow-x-auto  mt-6">
+      <table className="table table-zebra ">
         <thead>
           {table.getHeaderGroups().map((headerGroup) => (
             <tr key={headerGroup.id}>

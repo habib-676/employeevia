@@ -4,7 +4,12 @@ import useAuth from "../../../../hooks/useAuth";
 import EditModal from "./EditModal";
 import WorkTable from "./WorkTable";
 import WorkForm from "./WorkForm";
-import { addWork, getWorks } from "../../../../api/utils";
+import {
+  addWork,
+  deleteWork,
+  getWorks,
+  updateWork,
+} from "../../../../api/utils";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import LoadingSpinner from "../../../../components/Shared/Animation/LoadingSpinner";
 
@@ -15,7 +20,10 @@ export default function WorkSheet() {
 
   const { isPending, data: works = [] } = useQuery({
     queryKey: ["works", user?.email],
-    queryFn: () => getWorks(user.email).then((res) => res.data),
+    queryFn: () =>
+      getWorks(user.email).then((res) =>
+        res.data.sort((a, b) => new Date(b.date) - new Date(a.date))
+      ),
     enabled: !!user?.email,
   });
 
@@ -25,7 +33,6 @@ export default function WorkSheet() {
     const newData = { ...data, email: user.email };
     const res = await addWork(newData);
 
-    // ✅ Immediately update the local cache for a snappy UI
     queryClient.setQueryData(["works", user.email], (old = []) => [
       res.data,
       ...old,
@@ -33,33 +40,37 @@ export default function WorkSheet() {
     toast.success("Data Added");
   };
 
-  // const handleUpdate = async (updated) => {
-  //   await updateWork(updated._id, updated);
-  //   setWorks((prev) =>
-  //     prev.map((item) => (item._id === updated._id ? updated : item))
-  //   );
-  // };
+  const handleUpdate = async (updated) => {
+    const res = await updateWork(updated._id, updated); // ✅ send _id
 
-  // const handleDelete = async (id) => {
-  //   await deleteWork(id);
-  //   setWorks((prev) => prev.filter((item) => item._id !== id));
-  // };
+    console.log(res);
+    queryClient.setQueryData(["works", user.email], (old = []) =>
+      old.map((item) => (item._id === updated._id ? res.data : item))
+    );
+    toast.success("Task Updated");
+  };
+
+  const handleDelete = async (id) => {
+    await deleteWork(id);
+
+    queryClient.setQueryData(["works", user.email], (old = []) =>
+      old.filter((item) => item._id !== id)
+    );
+
+    toast.success("Task Deleted");
+  };
 
   return (
     <div className="p-6">
       <h1 className="text-2xl font-bold mb-4">Work Sheet</h1>
       <WorkForm onSubmit={handleAdd} />
 
-      <WorkTable
-        data={works}
-        onEdit={setEditData}
-        //  onDelete={handleDelete}
-      />
+      <WorkTable data={works} onEdit={setEditData} onDelete={handleDelete} />
       <EditModal
         isOpen={!!editData}
         data={editData}
         onClose={() => setEditData(null)}
-        // onUpdate={handleUpdate}
+        onUpdate={handleUpdate}
       />
     </div>
   );

@@ -28,3 +28,11 @@ export const addWork = (workData) => {
 export const getWorks = async (email) => {
   return await axios.get(`${import.meta.env.VITE_API_URL}/works/${email}`);
 };
+
+export const updateWork = (id, data) => {
+  return axios.put(`${import.meta.env.VITE_API_URL}/works/${id}`, data);
+};
+
+export const deleteWork = (id) => {
+  return axios.delete(`${import.meta.env.VITE_API_URL}/works/${id}`);
+};

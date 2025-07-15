@@ -11,9 +11,11 @@ const DashboardLayout = () => {
   };
 
   return (
-    <div className="min-h-screen flex ">
+    <div className="min-h-screen relative flex ">
       {/* Sidebar */}
-      <Sidebar isOpen={isSidebarOpen} toggleSidebar={toggleSidebar} />
+      <div  className="">
+        <Sidebar isOpen={isSidebarOpen} toggleSidebar={toggleSidebar} />
+      </div>
 
       {/* Main content */}
       <div className="flex-1 flex flex-col">

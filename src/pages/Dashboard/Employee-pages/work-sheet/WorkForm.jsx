@@ -42,7 +42,7 @@ export default function WorkForm({ onSubmit }) {
           name="task"
           render={({ field: { value, onChange } }) => (
             <Listbox value={value} onChange={onChange}>
-              <div className="relative mt-1 w-48 z-50">
+              <div className="relative mt-1 w-48 z-30">
                 <Listbox.Button className="relative w-full cursor-default rounded-lg bg-white py-2 pl-3 pr-10 text-left border shadow-md focus:outline-none">
                   <span className="block truncate">{value}</span>
                   <span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3">
