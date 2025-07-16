@@ -8,6 +8,9 @@ import Employees from "../pages/Dashboard/HR-pages/employee-list/Employees";
 import AuthLayout from "../layouts/AuthLayout";
 import Login from "../pages/Auth-pages/Login";
 import Register from "../pages/Auth-pages/Register";
+import axios from "axios";
+import LoadingSpinner from "../components/Shared/Animation/LoadingSpinner";
+import EmployeeDetails from "../pages/Dashboard/HR-pages/employee-list/EmployeeDetails";
 
 export const router = createBrowserRouter([
   {
@@ -43,6 +46,18 @@ export const router = createBrowserRouter([
       {
         path: "employee-list",
         element: <Employees></Employees>,
+      },
+      {
+        path: "employee-list/details/:email",
+        hydrateFallbackElement: <LoadingSpinner />,
+        loader: async ({ params }) => {
+          const { data } = await axios(
+            `${import.meta.env.VITE_API_URL}/payments/${params.email}`
+          );
+          return data;
+        },
+
+        element: <EmployeeDetails></EmployeeDetails>,
       },
     ],
   },

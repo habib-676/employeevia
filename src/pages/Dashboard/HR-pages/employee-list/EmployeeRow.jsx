@@ -43,7 +43,7 @@ const EmployeeRow = ({ employee, onToggleVerify }) => {
         </button>
       </td>
       <td className="px-6 py-4 text-secondary">
-        <Link>
+        <Link to={`details/${email}`}>
           <FaEye size={20} className="text-primary" />
         </Link>
       </td>
