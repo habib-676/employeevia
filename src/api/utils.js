@@ -40,3 +40,8 @@ export const deleteWork = (id) => {
 export const getEmployees = async () => {
   return await axios(`${import.meta.env.VITE_API_URL}/employees`);
 };
+
+// payment api
+export const addPaymentReq = async (request) => {
+  return await axios.post(`${import.meta.env.VITE_API_URL}/payments`, request);
+};
