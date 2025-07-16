@@ -6,6 +6,7 @@ import {
 } from "react-icons/fa";
 import { NavLink } from "react-router";
 import { IoMdClose } from "react-icons/io";
+import { RiProgress2Fill } from "react-icons/ri";
 import Logo from "../../Shared/logo/Logo";
 import useAuth from "../../../hooks/useAuth";
 import HoverUnderlineText from "../../Shared/Animation/HoverUnderlineText";
@@ -53,11 +54,19 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
             <FaMoneyBillWave />{" "}
             <HoverUnderlineText>Payment History</HoverUnderlineText>
           </NavLink>
+          {/* hr */}
           <NavLink
             to="employee-list"
             className="flex items-center gap-3 text-secondary-content hover:text-secondary"
           >
             <FaUsers /> <HoverUnderlineText>Employee List</HoverUnderlineText>
+          </NavLink>
+          <NavLink
+            to="progress"
+            className="flex items-center gap-3 text-secondary-content hover:text-secondary"
+          >
+            <RiProgress2Fill />
+            <HoverUnderlineText>Progress</HoverUnderlineText>
           </NavLink>
 
           {/* logout */}

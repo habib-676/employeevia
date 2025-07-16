@@ -27,10 +27,10 @@ export default function WorkSheet() {
     enabled: !!user?.email,
   });
 
-  if (isPending) return <LoadingSpinner />;
+  // if (isPending) return <LoadingSpinner />;
 
   const handleAdd = async (data) => {
-    const newData = { ...data, email: user.email };
+    const newData = { ...data, email: user.email, name: user.displayName };
     const res = await addWork(newData);
 
     queryClient.setQueryData(["works", user.email], (old = []) => [

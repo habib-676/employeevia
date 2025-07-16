@@ -11,6 +11,7 @@ import Register from "../pages/Auth-pages/Register";
 import axios from "axios";
 import LoadingSpinner from "../components/Shared/Animation/LoadingSpinner";
 import EmployeeDetails from "../pages/Dashboard/HR-pages/employee-list/EmployeeDetails";
+import Progress from "../pages/Dashboard/HR-pages/progress/Progress";
 
 export const router = createBrowserRouter([
   {
@@ -58,6 +59,14 @@ export const router = createBrowserRouter([
         },
 
         element: <EmployeeDetails></EmployeeDetails>,
+      },
+      {
+        path: "progress",
+        loader: async () => {
+          const { data } = await axios(`${import.meta.env.VITE_API_URL}/works`);
+          return data;
+        },
+        element: <Progress></Progress>,
       },
     ],
   },
