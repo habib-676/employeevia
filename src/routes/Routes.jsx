@@ -13,6 +13,7 @@ import LoadingSpinner from "../components/Shared/Animation/LoadingSpinner";
 import EmployeeDetails from "../pages/Dashboard/HR-pages/employee-list/EmployeeDetails";
 import Progress from "../pages/Dashboard/HR-pages/progress/Progress";
 import Contact from "../pages/contact-us/Contact";
+import ManageEmployees from "../pages/Dashboard/Admin-pages/manage-employees/ManageEmployees";
 
 export const router = createBrowserRouter([
   {
@@ -68,6 +69,10 @@ export const router = createBrowserRouter([
           return data;
         },
         element: <Progress></Progress>,
+      },
+      {
+        path: "all-employee-list",
+        element: <ManageEmployees></ManageEmployees>,
       },
     ],
   },

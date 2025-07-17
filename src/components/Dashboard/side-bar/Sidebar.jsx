@@ -7,6 +7,7 @@ import {
 import { NavLink } from "react-router";
 import { IoMdClose } from "react-icons/io";
 import { RiProgress2Fill } from "react-icons/ri";
+import { FaPeopleGroup } from "react-icons/fa6";
 import Logo from "../../Shared/logo/Logo";
 import useAuth from "../../../hooks/useAuth";
 import HoverUnderlineText from "../../Shared/Animation/HoverUnderlineText";
@@ -67,6 +68,13 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
           >
             <RiProgress2Fill />
             <HoverUnderlineText>Progress</HoverUnderlineText>
+          </NavLink>
+          <NavLink
+            to="all-employee-list"
+            className="flex items-center gap-3 text-secondary-content hover:text-secondary"
+          >
+            <FaPeopleGroup />
+            <HoverUnderlineText>All employee list</HoverUnderlineText>
           </NavLink>
 
           {/* logout */}
