@@ -21,7 +21,7 @@ const Navbar = () => {
       </div>
       <div className="border border-primary hidden md:flex font-medium justify-between flex-1 rounded-3xl py-2 px-5">
         <div className="flex gap-10 ml-7">
-          <NavLink>
+          <NavLink to={'contact-us'}>
             <HoverUnderlineText>Contact us</HoverUnderlineText>
           </NavLink>
           <NavLink to="dashboard">

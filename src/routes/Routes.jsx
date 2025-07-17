@@ -12,6 +12,7 @@ import axios from "axios";
 import LoadingSpinner from "../components/Shared/Animation/LoadingSpinner";
 import EmployeeDetails from "../pages/Dashboard/HR-pages/employee-list/EmployeeDetails";
 import Progress from "../pages/Dashboard/HR-pages/progress/Progress";
+import Contact from "../pages/contact-us/Contact";
 
 export const router = createBrowserRouter([
   {
@@ -24,7 +25,7 @@ export const router = createBrowserRouter([
       },
       {
         path: "contact-us",
-        element: <div>Contact us</div>,
+        Component: Contact,
       },
     ],
   },
