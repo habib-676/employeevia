@@ -6,6 +6,7 @@ import {
 } from "react-icons/fa";
 import { NavLink } from "react-router";
 import { IoMdClose } from "react-icons/io";
+import { GiTakeMyMoney } from "react-icons/gi";
 import { RiProgress2Fill } from "react-icons/ri";
 import { FaPeopleGroup } from "react-icons/fa6";
 import Logo from "../../Shared/logo/Logo";
@@ -75,6 +76,13 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
           >
             <FaPeopleGroup />
             <HoverUnderlineText>All employee list</HoverUnderlineText>
+          </NavLink>
+          <NavLink
+            to="payroll"
+            className="flex items-center gap-3 text-secondary-content hover:text-secondary"
+          >
+            <GiTakeMyMoney />
+            <HoverUnderlineText>Payroll</HoverUnderlineText>
           </NavLink>
 
           {/* logout */}

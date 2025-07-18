@@ -45,3 +45,7 @@ export const getEmployees = async () => {
 export const addPaymentReq = async (request) => {
   return await axios.post(`${import.meta.env.VITE_API_URL}/payments`, request);
 };
+
+export const getPayments = async () => {
+  return await axios(`${import.meta.env.VITE_API_URL}/payments`);
+};
