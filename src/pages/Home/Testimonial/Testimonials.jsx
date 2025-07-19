@@ -8,7 +8,7 @@ const Testimonials = ({ testimonialPromise }) => {
   return (
     <Container>
       <div className="mt-20">
-        <h3 className="font-bold text-4xl text-center">
+        <h3 className="font-bold text-3xl md:text-4xl text-center">
           <HoverUnderlineText>What People Say</HoverUnderlineText>
         </h3>
         <p className="text-center font-medium text-secondary-content mt-6">

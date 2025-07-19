@@ -8,7 +8,7 @@ const Team = ({ teamPromise }) => {
   return (
     <Container>
       <div className="mt-24">
-        <h2 className="text-center text-4xl font-bold">
+        <h2 className="text-center text-3xl md:text-4xl font-bold">
           <HoverUnderlineText>Meet Our Team</HoverUnderlineText>
         </h2>
         <p className="text-center font-medium text-secondary-content mt-6">

@@ -15,7 +15,7 @@ const Navbar = () => {
     toast.success("Successfully Logged Out");
   };
   return (
-    <div className="pt-5 pb-3 flex items-center justify-between bg-base-200 xl:px-20 md:px-10 sm:px-2 px-4">
+    <div className="pt-5 border-b border-gray-300 shadow-2xs pb-3 flex items-center justify-between bg-base-200 xl:px-20 md:px-10 sm:px-2 px-4">
       <div className="border border-primary rounded-3xl py-2 px-10">
         <Logo />
       </div>
@@ -43,7 +43,7 @@ const Navbar = () => {
           {/* Dropdown btn */}
           <div
             onClick={() => setIsOpen(!isOpen)}
-            className="p-4 md:py-1 md:px-2 border-[1px] border-primary flex flex-row items-center gap-3 rounded-full cursor-pointer hover:shadow-md transition"
+            className="p-4 md:py-1 md:px-2 border border-primary flex flex-row items-center gap-3 rounded-full cursor-pointer hover:shadow-md transition"
           >
             <AiOutlineMenu />
             <div className="hidden md:block">
@@ -53,8 +53,8 @@ const Navbar = () => {
                 referrerPolicy="no-referrer"
                 src={user && user.photoURL ? user.photoURL : avatarImg}
                 alt="profile"
-                height="30"
-                width="30"
+                height="50"
+                width="50"
               />
             </div>
           </div>

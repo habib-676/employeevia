@@ -8,8 +8,8 @@ const Services = ({ servicesPromise }) => {
   console.log(services);
   return (
     <Container>
-      <div className="mt-30">
-        <h2 className="font-bold text-4xl text-center ">
+      <div className="mt-20">
+        <h2 className="font-bold text-3xl md:text-4xl text-center ">
           <HoverUnderlineText>What We Offer</HoverUnderlineText>
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 mt-6 gap-5">
