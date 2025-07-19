@@ -12,9 +12,17 @@ import { FaPeopleGroup } from "react-icons/fa6";
 import Logo from "../../Shared/logo/Logo";
 import useAuth from "../../../hooks/useAuth";
 import HoverUnderlineText from "../../Shared/Animation/HoverUnderlineText";
+import useRole from "../../../hooks/useRole";
+import LoadingSpinner from "../../Shared/Spinners/LoadingSpinner";
 
 const Sidebar = ({ isOpen, toggleSidebar }) => {
   const { logOut } = useAuth();
+  const [role, isRoleLoading] = useRole();
+
+  if (isRoleLoading) {
+    return <LoadingSpinner />;
+  }
+
   return (
     <>
       {/* Overlay for mobile */}
@@ -43,47 +51,63 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
         </div>
 
         <nav className="space-y-4">
-          <NavLink
-            to="work-sheet"
-            className="flex items-center gap-3 text-secondary-content hover:text-secondary"
-          >
-            <FaRegFileAlt /> <HoverUnderlineText>Worksheet</HoverUnderlineText>
-          </NavLink>
-          <NavLink
-            to="payment-history"
-            className="flex items-center gap-3 text-secondary-content hover:text-secondary"
-          >
-            <FaMoneyBillWave />{" "}
-            <HoverUnderlineText>Payment History</HoverUnderlineText>
-          </NavLink>
+          {role === "employee" && (
+            <>
+              <NavLink
+                to="work-sheet"
+                className="flex items-center gap-3 text-secondary-content hover:text-secondary"
+              >
+                <FaRegFileAlt />{" "}
+                <HoverUnderlineText>Worksheet</HoverUnderlineText>
+              </NavLink>
+              <NavLink
+                to="payment-history"
+                className="flex items-center gap-3 text-secondary-content hover:text-secondary"
+              >
+                <FaMoneyBillWave />{" "}
+                <HoverUnderlineText>Payment History</HoverUnderlineText>
+              </NavLink>
+            </>
+          )}
           {/* hr */}
-          <NavLink
-            to="employee-list"
-            className="flex items-center gap-3 text-secondary-content hover:text-secondary"
-          >
-            <FaUsers /> <HoverUnderlineText>Employee List</HoverUnderlineText>
-          </NavLink>
-          <NavLink
-            to="progress"
-            className="flex items-center gap-3 text-secondary-content hover:text-secondary"
-          >
-            <RiProgress2Fill />
-            <HoverUnderlineText>Progress</HoverUnderlineText>
-          </NavLink>
-          <NavLink
-            to="all-employee-list"
-            className="flex items-center gap-3 text-secondary-content hover:text-secondary"
-          >
-            <FaPeopleGroup />
-            <HoverUnderlineText>All employee list</HoverUnderlineText>
-          </NavLink>
-          <NavLink
-            to="payroll"
-            className="flex items-center gap-3 text-secondary-content hover:text-secondary"
-          >
-            <GiTakeMyMoney />
-            <HoverUnderlineText>Payroll</HoverUnderlineText>
-          </NavLink>
+
+          {(role === "hr" || role === "admin") && (
+            <>
+              <NavLink
+                to="employee-list"
+                className="flex items-center gap-3 text-secondary-content hover:text-secondary"
+              >
+                <FaUsers />{" "}
+                <HoverUnderlineText>Employee List</HoverUnderlineText>
+              </NavLink>
+              <NavLink
+                to="progress"
+                className="flex items-center gap-3 text-secondary-content hover:text-secondary"
+              >
+                <RiProgress2Fill />
+                <HoverUnderlineText>Progress</HoverUnderlineText>
+              </NavLink>
+            </>
+          )}
+
+          {role === "admin" && (
+            <>
+              <NavLink
+                to="all-employee-list"
+                className="flex items-center gap-3 text-secondary-content hover:text-secondary"
+              >
+                <FaPeopleGroup />
+                <HoverUnderlineText>All employee list</HoverUnderlineText>
+              </NavLink>
+              <NavLink
+                to="payroll"
+                className="flex items-center gap-3 text-secondary-content hover:text-secondary"
+              >
+                <GiTakeMyMoney />
+                <HoverUnderlineText>Payroll</HoverUnderlineText>
+              </NavLink>
+            </>
+          )}
 
           {/* logout */}
           <NavLink

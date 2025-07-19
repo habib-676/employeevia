@@ -15,6 +15,10 @@ import Progress from "../pages/Dashboard/HR-pages/progress/Progress";
 import Contact from "../pages/contact-us/Contact";
 import ManageEmployees from "../pages/Dashboard/Admin-pages/manage-employees/ManageEmployees";
 import PayrollPage from "../pages/Dashboard/Admin-pages/payroll/PayrollPage";
+import PrivateRoute from "./PrivateRoute";
+import AdminRoute from "./AdminRoute";
+import HrRoute from "./HrRoute";
+import EmployeeRoute from "./EmployeeRoute";
 
 export const router = createBrowserRouter([
   {
@@ -37,19 +41,37 @@ export const router = createBrowserRouter([
     children: [
       {
         index: true,
-        element: <Worksheet></Worksheet>,
+        element: <div>Welcome to your profile</div>,
       },
       {
         path: "work-sheet",
-        Component: Worksheet,
+        element: (
+          <PrivateRoute>
+            <EmployeeRoute>
+              <Worksheet />
+            </EmployeeRoute>
+          </PrivateRoute>
+        ),
       },
       {
         path: "payment-history",
-        Component: PaymentHistory,
+        element: (
+          <PrivateRoute>
+            <EmployeeRoute>
+              <PaymentHistory />
+            </EmployeeRoute>
+          </PrivateRoute>
+        ),
       },
       {
         path: "employee-list",
-        element: <Employees></Employees>,
+        element: (
+          <PrivateRoute>
+            <HrRoute>
+              <Employees></Employees>
+            </HrRoute>
+          </PrivateRoute>
+        ),
       },
       {
         path: "employee-list/details/:email",
@@ -61,7 +83,13 @@ export const router = createBrowserRouter([
           return data;
         },
 
-        element: <EmployeeDetails></EmployeeDetails>,
+        element: (
+          <PrivateRoute>
+            <HrRoute>
+              <EmployeeDetails></EmployeeDetails>
+            </HrRoute>
+          </PrivateRoute>
+        ),
       },
       {
         path: "progress",
@@ -69,15 +97,33 @@ export const router = createBrowserRouter([
           const { data } = await axios(`${import.meta.env.VITE_API_URL}/works`);
           return data;
         },
-        element: <Progress></Progress>,
+        element: (
+          <PrivateRoute>
+            <HrRoute>
+              <Progress></Progress>
+            </HrRoute>
+          </PrivateRoute>
+        ),
       },
       {
         path: "all-employee-list",
-        element: <ManageEmployees></ManageEmployees>,
+        element: (
+          <PrivateRoute>
+            <AdminRoute>
+              <ManageEmployees></ManageEmployees>
+            </AdminRoute>
+          </PrivateRoute>
+        ),
       },
       {
         path: "payroll",
-        element: <PayrollPage></PayrollPage>,
+        element: (
+          <PrivateRoute>
+            <AdminRoute>
+              <PayrollPage></PayrollPage>
+            </AdminRoute>
+          </PrivateRoute>
+        ),
       },
     ],
   },
