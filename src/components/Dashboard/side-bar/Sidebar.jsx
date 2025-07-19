@@ -26,7 +26,7 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
       )}
 
       <aside
-        className={`fixed md:static z-50 top-0 left-0 h-screen w-64 bg-base-100 shadow-md p-4 md:px-10 md:py-6 transition-transform duration-300 transform
+        className={`fixed md:sticky z-50 top-0 left-0 h-screen w-64 bg-base-100 shadow-md p-4 md:px-10 md:py-6 transition-transform duration-300 transform
           ${isOpen ? "translate-x-0" : "-translate-x-full"} md:translate-x-0`}
       >
         {/* Close Button (mobile only) */}

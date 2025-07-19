@@ -1,6 +1,7 @@
 import { Dialog, DialogPanel, DialogTitle } from "@headlessui/react";
 import { loadStripe } from "@stripe/stripe-js";
 import { Elements } from "@stripe/react-stripe-js";
+import CheckoutForm from "./CheckoutForm";
 
 const PayModal = ({ closeModal, isOpen, work, fetchData }) => {
   const { personalInfo, salary, month, year } = work;
@@ -33,6 +34,17 @@ const PayModal = ({ closeModal, isOpen, work, fetchData }) => {
                 mm/yy : {month}, {year}
               </p>
             </div>
+
+            {/* stipe checkout form */}
+            <Elements stripe={stripePromise}>
+              <CheckoutForm
+                work={work}
+                closeModal={closeModal}
+                fetchData={fetchData}
+                month={month}
+                year={year}
+              ></CheckoutForm>
+            </Elements>
           </DialogPanel>
         </div>
       </div>

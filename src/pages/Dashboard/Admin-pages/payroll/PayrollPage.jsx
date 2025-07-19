@@ -29,37 +29,45 @@ const PayrollPage = () => {
       <h3 className="text-3xl font-bold mb-10 text-center">
         Pending <span className="text-secondary">Payments</span>
       </h3>
-      <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
-        <table className="w-full text-sm text-left rtl:text-right ">
-          <thead className="text-xs text-white uppercase bg-primary  ">
-            <tr>
-              <th scope="col" className="px-6 py-3">
-                name
-              </th>
-              <th scope="col" className="px-6 py-3">
-                salary
-              </th>
-              <th scope="col" className="px-6 py-3">
-                month/year
-              </th>
-              <th scope="col" className="px-6 py-3">
-                pay
-              </th>
-              <th scope="col" className="px-6 py-3">
-                payment date
-              </th>
-              <th scope="col" className="px-6 py-3">
-                Transaction id
-              </th>
-            </tr>
-          </thead>
-          <tbody>
-            {paymentData.map((work, index) => (
-              <PayRow key={index} work={work} fetchData={refetch}></PayRow>
-            ))}
-          </tbody>
-        </table>
-      </div>
+      {paymentData.length < 1 ? (
+        <div className="border border-primary p-6 w-md mx-auto rounded-3xl shadow-2xl">
+          <p className="text-secondary-content font-semibold text-2xl text-center">
+            No data found
+          </p>
+        </div>
+      ) : (
+        <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
+          <table className="w-full text-sm text-left rtl:text-right ">
+            <thead className="text-xs text-white uppercase bg-primary  ">
+              <tr>
+                <th scope="col" className="px-6 py-3">
+                  name
+                </th>
+                <th scope="col" className="px-6 py-3">
+                  salary
+                </th>
+                <th scope="col" className="px-6 py-3">
+                  month/year
+                </th>
+                <th scope="col" className="px-6 py-3">
+                  pay
+                </th>
+                <th scope="col" className="px-6 py-3">
+                  payment date
+                </th>
+                <th scope="col" className="px-6 py-3">
+                  Transaction id
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              {paymentData.map((work, index) => (
+                <PayRow key={index} work={work} fetchData={refetch}></PayRow>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      )}
     </div>
   );
 };

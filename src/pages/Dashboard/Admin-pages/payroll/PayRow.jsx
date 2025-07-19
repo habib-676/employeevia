@@ -19,12 +19,15 @@ const PayRow = ({ work, fetchData }) => {
         <button
           disabled={isPaid}
           onClick={() => setIsOpen(true)}
-          className={`btn btn-secondary btn-sm  ${isPaid ? "" : "text-white"}`}
+          className={`btn btn-secondary btn-sm  ${
+            isPaid ? "opacity-50 cursor-not-allowed" : "text-white"
+          }`}
         >
-          Pay
+          {isPaid ? 'Paid':'Pay'}
         </button>
       </td>
-      <td>{paymentDate}</td>
+      <td className="px-6 py-4">{paymentDate}</td>
+      <td className="px-6 py-4">{work?.transactionId}</td>
 
       <PayModal
         closeModal={closeModal}
