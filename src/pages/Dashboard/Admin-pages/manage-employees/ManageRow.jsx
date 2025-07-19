@@ -7,7 +7,7 @@ import toast from "react-hot-toast";
 import { useState } from "react";
 
 const ManageRow = ({ single }) => {
-  const { _id, name, designation, role, salary, isFired } = single;
+  const { _id, name, role, salary, isFired } = single;
   const queryClient = useQueryClient();
 
   const [showModal, setShowModal] = useState(false);
@@ -67,7 +67,7 @@ const ManageRow = ({ single }) => {
   return (
     <tr className="bg-base-200 border-gray-200 border-b">
       <td className="px-6 py-4">{name}</td>
-      <td className="px-6 py-4">{designation}</td>
+      <td className="px-6 py-4">{role}</td>
       <td className="px-6 py-4">
         {role === "hr" ? (
           <button className="btn btn-circle">

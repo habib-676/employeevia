@@ -19,6 +19,7 @@ import PrivateRoute from "./PrivateRoute";
 import AdminRoute from "./AdminRoute";
 import HrRoute from "./HrRoute";
 import EmployeeRoute from "./EmployeeRoute";
+import Profile from "../pages/Dashboard/profile-page/Profile";
 
 export const router = createBrowserRouter([
   {
@@ -41,7 +42,7 @@ export const router = createBrowserRouter([
     children: [
       {
         index: true,
-        element: <div>Welcome to your profile</div>,
+        element: <Profile />,
       },
       {
         path: "work-sheet",
