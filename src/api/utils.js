@@ -49,3 +49,7 @@ export const addPaymentReq = async (request) => {
 export const getPayments = async () => {
   return await axios(`${import.meta.env.VITE_API_URL}/payments`);
 };
+
+export const getMyPayments = async (email) => {
+  return await axios(`${import.meta.env.VITE_API_URL}/my-payments/${email}`);
+};
