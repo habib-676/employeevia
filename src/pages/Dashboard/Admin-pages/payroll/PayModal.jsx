@@ -41,8 +41,6 @@ const PayModal = ({ closeModal, isOpen, work, fetchData }) => {
                 work={work}
                 closeModal={closeModal}
                 fetchData={fetchData}
-                month={month}
-                year={year}
               ></CheckoutForm>
             </Elements>
           </DialogPanel>

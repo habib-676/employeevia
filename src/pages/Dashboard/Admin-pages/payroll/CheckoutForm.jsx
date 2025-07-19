@@ -5,7 +5,7 @@ import { ClipLoader } from "react-spinners";
 import { axiosSecure } from "../../../../hooks/useAxiosSecure";
 import toast from "react-hot-toast";
 
-const CheckoutForm = ({ work, closeModal, fetchData, month, year }) => {
+const CheckoutForm = ({ work, closeModal, fetchData }) => {
   const { user } = useAuth();
   const stripe = useStripe();
   const elements = useElements();

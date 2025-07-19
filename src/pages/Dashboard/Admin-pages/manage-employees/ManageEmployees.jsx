@@ -40,6 +40,9 @@ const ManageEmployees = () => {
               <th scope="col" className="px-6 py-3">
                 fire
               </th>
+              <th scope="col" className="px-6 py-3">
+                Salary
+              </th>
             </tr>
           </thead>
           <tbody>
