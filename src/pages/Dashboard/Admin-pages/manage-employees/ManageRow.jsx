@@ -12,6 +12,24 @@ const ManageRow = ({ single }) => {
 
   const [showModal, setShowModal] = useState(false);
 
+  // update role :
+  const { mutate: updateRole } = useMutation({
+    mutationFn: async (newRole) => {
+      const res = await axios.patch(
+        `${import.meta.env.VITE_API_URL}/users/role/${_id}`,
+        { role: newRole } // ✅ structured as expected
+      );
+      return res.data;
+    },
+    onSuccess: () => {
+      toast.success("Role updated successfully");
+      queryClient.invalidateQueries({ queryKey: ["users"] });
+    },
+    onError: () => {
+      toast.error("Failed to update role");
+    },
+  });
+
   //  updating salary
   const { mutate } = useMutation({
     mutationFn: async (newSalary) => {
@@ -70,11 +88,14 @@ const ManageRow = ({ single }) => {
       <td className="px-6 py-4">{role}</td>
       <td className="px-6 py-4">
         {role === "hr" ? (
-          <button className="btn btn-circle">
+          <button
+            className="btn btn-circle"
+            onClick={() => updateRole("employee")}
+          >
             <ImCross className="text-red-500" size={20} />
           </button>
         ) : (
-          <button className="btn btn-circle">
+          <button className="btn btn-circle" onClick={() => updateRole("hr")}>
             <TiTick className="text-accent" size={20} />
           </button>
         )}
