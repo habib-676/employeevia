@@ -1,4 +1,5 @@
 import {
+  FaInbox,
   FaMoneyBillWave,
   FaRegFileAlt,
   FaSignOutAlt,
@@ -105,6 +106,13 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
               >
                 <GiTakeMyMoney />
                 <HoverUnderlineText>Payroll</HoverUnderlineText>
+              </NavLink>
+              <NavLink
+                to="messages"
+                className="flex items-center gap-3 text-secondary-content hover:text-secondary"
+              >
+                <FaInbox />
+                <HoverUnderlineText>Messages</HoverUnderlineText>
               </NavLink>
             </>
           )}

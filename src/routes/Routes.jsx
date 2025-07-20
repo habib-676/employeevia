@@ -20,6 +20,7 @@ import AdminRoute from "./AdminRoute";
 import HrRoute from "./HrRoute";
 import EmployeeRoute from "./EmployeeRoute";
 import Profile from "../pages/Dashboard/profile-page/Profile";
+import Messages from "../pages/Dashboard/Admin-pages/messages/Messages";
 
 export const router = createBrowserRouter([
   {
@@ -38,7 +39,11 @@ export const router = createBrowserRouter([
   },
   {
     path: "dashboard",
-    element: <DashboardLayout></DashboardLayout>,
+    element: (
+      <PrivateRoute>
+        <DashboardLayout></DashboardLayout>
+      </PrivateRoute>
+    ),
     children: [
       {
         index: true,
@@ -124,6 +129,16 @@ export const router = createBrowserRouter([
               <PayrollPage></PayrollPage>
             </AdminRoute>
           </PrivateRoute>
+        ),
+      },
+      {
+        path: "messages",
+        element: (
+          <AdminRoute>
+            <PrivateRoute>
+              <Messages />
+            </PrivateRoute>
+          </AdminRoute>
         ),
       },
     ],

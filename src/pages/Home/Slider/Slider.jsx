@@ -39,13 +39,12 @@ const Slider = () => {
                   for HR to effortlessly manage contracts, payments, and
                   productivity — all in one place.
                 </p>
-                <div className="mt-4">
-                  <Link to="/dashboard">
-                    <button className="btn bg-primary border-none text-white hover:bg-accent transition-all duration-300">
-                      Get Started
-                    </button>
-                  </Link>
-                </div>
+                <Link to={"/dashboard"}>
+                  <button className="relative mt-4 overflow-hidden px-6 py-3 text-white font-semibold bg-secondary rounded group">
+                    <span className="relative z-10">Get Started</span>
+                    <span className="absolute inset-0 w-full h-full bg-white opacity-20 rotate-45 translate-x-full translate-y-full transition-all duration-500 ease-in-out group-hover:translate-x-0 group-hover:translate-y-0"></span>
+                  </button>
+                </Link>
               </div>
             </div>
           </div>
