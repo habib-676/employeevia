@@ -53,8 +53,8 @@ const Navbar = () => {
                 referrerPolicy="no-referrer"
                 src={user && user.photoURL ? user.photoURL : avatarImg}
                 alt="profile"
-                height="50"
-                width="50"
+                height="40"
+                width="40"
               />
             </div>
           </div>
