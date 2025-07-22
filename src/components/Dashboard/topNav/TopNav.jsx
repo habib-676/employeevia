@@ -2,10 +2,11 @@ import { FaBars } from "react-icons/fa";
 import { useState } from "react";
 import Logo from "../../Shared/logo/Logo";
 import useAuth from "../../../hooks/useAuth";
+import { Link } from "react-router";
 
 const TopNav = ({ toggleSidebar }) => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
-  const { user } = useAuth();
+  const { user, logOut } = useAuth();
 
   return (
     <div className=" shadow-md xl:px-20 md:px-10 sm:px-2 px-4 py-3 flex items-center justify-between">
@@ -26,9 +27,13 @@ const TopNav = ({ toggleSidebar }) => {
 
         {dropdownOpen && (
           <div className="absolute right-0 mt-2 w-40 bg-white rounded shadow-lg z-50">
-            <button className="w-full text-left px-4 py-2 hover:bg-gray-100">
+            <Link
+              to={"/"}
+              onClick={() => logOut()}
+              className="w-full text-left px-4 py-2 hover:bg-gray-100"
+            >
               Logout
-            </button>
+            </Link>
           </div>
         )}
       </div>

@@ -73,3 +73,5 @@ A powerful, secure, and modern web app for managing employees, workload, payroll
 ---
 
 ## 📸 Screenshot Preview
+
+![Dashboard Preview](./public/image.png)

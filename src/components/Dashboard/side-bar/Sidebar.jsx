@@ -121,7 +121,7 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
           <NavLink
             to={"/"}
             onClick={logOut}
-            className="flex items-center gap-3 text-secondary-content hover:text-red-500"
+            className="flex  items-center gap-3 text-secondary-content hover:text-red-500"
           >
             <FaSignOutAlt /> <HoverUnderlineText>Logout</HoverUnderlineText>
           </NavLink>
