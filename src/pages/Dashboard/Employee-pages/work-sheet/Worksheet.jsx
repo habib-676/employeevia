@@ -27,7 +27,7 @@ export default function WorkSheet() {
     enabled: !!user?.email,
   });
 
-  // if (isPending) return <LoadingSpinner />;
+  if (isPending) return <LoadingSpinner />;
 
   const handleAdd = async (data) => {
     const newData = { ...data, email: user.email, name: user.displayName };
@@ -65,7 +65,13 @@ export default function WorkSheet() {
       <h1 className="text-2xl font-bold mb-4">Work Sheet</h1>
       <WorkForm onSubmit={handleAdd} />
 
-      <WorkTable data={works} onEdit={setEditData} onDelete={handleDelete} />
+      {works.length === 0 ? (
+        <p className="text-2xl text-center font-semibold mt-10">
+          No data found
+        </p>
+      ) : (
+        <WorkTable data={works} onEdit={setEditData} onDelete={handleDelete} />
+      )}
       <EditModal
         isOpen={!!editData}
         data={editData}

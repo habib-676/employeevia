@@ -2,8 +2,8 @@ import { getEmployees } from "../../../../api/utils";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import LoadingSpinner from "../../../../components/Shared/Animation/LoadingSpinner";
 import EmployeeRow from "./EmployeeRow";
-import axios from "axios";
 import { toast } from "react-hot-toast";
+import { axiosSecure } from "../../../../hooks/useAxiosSecure";
 
 const Employees = () => {
   const queryClient = useQueryClient();
@@ -19,7 +19,7 @@ const Employees = () => {
   // Toggle verification status mutation
   const { mutate: toggleVerify } = useMutation({
     mutationFn: async ({ id, isVerified }) => {
-      return await axios.patch(
+      return await axiosSecure.patch(
         `${import.meta.env.VITE_API_URL}/employees/${id}`,
         { isVerified }
       );

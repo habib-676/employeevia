@@ -2,9 +2,9 @@ import { TiTick } from "react-icons/ti";
 import { ImCross } from "react-icons/im";
 import { FaFire } from "react-icons/fa6";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import axios from "axios";
 import toast from "react-hot-toast";
 import { useState } from "react";
+import { axiosSecure } from "../../../../hooks/useAxiosSecure";
 
 const ManageRow = ({ single }) => {
   const { _id, name, role, salary, isFired } = single;
@@ -15,7 +15,7 @@ const ManageRow = ({ single }) => {
   // update role :
   const { mutate: updateRole } = useMutation({
     mutationFn: async (newRole) => {
-      const res = await axios.patch(
+      const res = await axiosSecure.patch(
         `${import.meta.env.VITE_API_URL}/users/role/${_id}`,
         { role: newRole } // ✅ structured as expected
       );
@@ -33,7 +33,7 @@ const ManageRow = ({ single }) => {
   //  updating salary
   const { mutate } = useMutation({
     mutationFn: async (newSalary) => {
-      const res = await axios.patch(
+      const res = await axiosSecure.patch(
         `${import.meta.env.VITE_API_URL}/users/${_id}`,
         { salary: newSalary }
       );
@@ -68,7 +68,7 @@ const ManageRow = ({ single }) => {
   // 🔴 Fire user
   const { mutate: fireUser } = useMutation({
     mutationFn: async () => {
-      const res = await axios.patch(
+      const res = await axiosSecure.patch(
         `${import.meta.env.VITE_API_URL}/fire-user/${_id}`
       );
       return res.data;

@@ -11,7 +11,7 @@ import {
 } from "firebase/auth";
 import { app } from "../firebase/firebase.init";
 import axios from "axios";
-import toast from "react-hot-toast";
+import { toast } from "react-hot-toast";
 
 // eslint-disable-next-line react-refresh/only-export-components
 export const AuthContext = createContext(null);
@@ -50,69 +50,49 @@ const AuthProvider = ({ children }) => {
   };
 
   // onAuthStateChange
-  // useEffect(() => {
-  //   const unsubscribe = onAuthStateChanged(auth, async (currentUser) => {
-  //     console.log("CurrentUser-->", currentUser?.email);
-  //     if (currentUser?.email) {
-  //       setUser(currentUser);
-
-  //       // Get JWT token
-  //       await axios.post(
-  //         `${import.meta.env.VITE_API_URL}/jwt`,
-  //         {
-  //           email: currentUser?.email,
-  //         },
-  //         { withCredentials: true }
-  //       );
-  //     } else {
-  //       setUser(currentUser);
-  //       await axios.get(`${import.meta.env.VITE_API_URL}/logout`, {
-  //         withCredentials: true,
-  //       });
-  //     }
-  //     setLoading(false);
-  //   });
-  //   return () => {
-  //     return unsubscribe();
-  //   };
-  // }, []);
-
-  // with blocking
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, async (currentUser) => {
-      setLoading(true);
-
+      console.log("CurrentUser-->", currentUser?.email);
       if (currentUser?.email) {
+        setUser(currentUser);
+
+        // Get JWT token
+        // await axios.post(
+        //   `${import.meta.env.VITE_API_URL}/jwt`,
+        //   {
+        //     email: currentUser?.email,
+        //   },
+        //   { withCredentials: true }
+        // );
+
         try {
-          // Try to get JWT
           await axios.post(
             `${import.meta.env.VITE_API_URL}/jwt`,
             { email: currentUser?.email },
             { withCredentials: true }
           );
-
-          // ✅ If successful, set user
-          setUser(currentUser);
-        } catch (error) {
-          // ❌ Fired or error getting token
-          console.error("JWT failed", error.response?.data?.message);
-          toast.error(error.response?.data?.message || "Login failed");
-
-          // Force logout
-          await signOut(auth);
-          setUser(null);
+        } catch (err) {
+          if (err.response && err.response.status === 403) {
+            // User is fired
+            toast.error("You are fired. Logging out...");
+            await signOut(auth);
+            setUser(null);
+            return;
+          } else {
+            console.error("JWT fetch error", err);
+          }
         }
       } else {
-        setUser(null);
+        setUser(currentUser);
         await axios.get(`${import.meta.env.VITE_API_URL}/logout`, {
           withCredentials: true,
         });
       }
-
       setLoading(false);
     });
-
-    return () => unsubscribe();
+    return () => {
+      return unsubscribe();
+    };
   }, []);
 
   const authInfo = {

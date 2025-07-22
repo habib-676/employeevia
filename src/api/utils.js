@@ -1,4 +1,5 @@
 import axios from "axios";
+import { axiosSecure } from "../hooks/useAxiosSecure";
 
 // upload image and return image url
 export const imageUpload = async (image) => {
@@ -22,7 +23,7 @@ export const setUserInDb = async (user) => {
 // work related apis
 
 export const addWork = (workData) => {
-  return axios.post(`${import.meta.env.VITE_API_URL}/works`, workData);
+  return axiosSecure.post(`${import.meta.env.VITE_API_URL}/works`, workData);
 };
 
 export const getWorks = async (email) => {
@@ -30,11 +31,11 @@ export const getWorks = async (email) => {
 };
 
 export const updateWork = (id, data) => {
-  return axios.put(`${import.meta.env.VITE_API_URL}/works/${id}`, data);
+  return axiosSecure.put(`${import.meta.env.VITE_API_URL}/works/${id}`, data);
 };
 
 export const deleteWork = (id) => {
-  return axios.delete(`${import.meta.env.VITE_API_URL}/works/${id}`);
+  return axiosSecure.delete(`${import.meta.env.VITE_API_URL}/works/${id}`);
 };
 
 export const getEmployees = async () => {
@@ -43,7 +44,7 @@ export const getEmployees = async () => {
 
 // payment api
 export const addPaymentReq = async (request) => {
-  return await axios.post(`${import.meta.env.VITE_API_URL}/payments`, request);
+  return await axiosSecure.post(`${import.meta.env.VITE_API_URL}/payments`, request);
 };
 
 export const getPayments = async () => {
