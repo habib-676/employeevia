@@ -87,23 +87,26 @@ const Register = () => {
   };
 
   return (
-    <div className="flex justify-center mb-20 items-center bg-base-100 min-h-screen">
-      <div className="w-full max-w-md p-8 rounded-box shadow-xl bg-base-200 text-base-content">
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-r from-blue-50 to-purple-50 p-4">
+      <div className="w-full max-w-lg p-6 rounded-2xl shadow-2xl bg-white text-gray-800">
         {/* Header */}
-        <div className="mb-6 text-center">
-          <h1 className="text-4xl font-bold text-primary">Sign Up</h1>
-          <p className="text-sm opacity-70">Welcome to EmployeeVia</p>
+        <div className="text-center mb-8">
+          <h1 className="text-3xl md:text-4xl font-extrabold text-blue-700 mb-2">
+            Sign Up
+          </h1>
+          <p className="text-sm md:text-base text-gray-500">
+            Welcome to EmployeeVia
+          </p>
         </div>
 
         {/* Form */}
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
-          {/* Fieldset: Name & Designation */}
-          <fieldset className="border border-base-300 p-4 rounded">
-            <legend className="text-sm font-medium text-base-content mb-2">
+          {/* Basic Info */}
+          <fieldset className="border border-gray-200 p-4 rounded-lg">
+            <legend className="text-gray-700 font-semibold text-sm mb-2">
               Basic Info
             </legend>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              {/* Name */}
               <div>
                 <label className="label-text">Name</label>
                 <input
@@ -113,11 +116,9 @@ const Register = () => {
                   placeholder="Enter your name"
                 />
                 {errors.name && (
-                  <p className="text-error text-sm">{errors.name.message}</p>
+                  <p className="text-red-500 text-sm">{errors.name.message}</p>
                 )}
               </div>
-
-              {/* Designation */}
               <div>
                 <label className="label-text">Designation</label>
                 <input
@@ -129,7 +130,7 @@ const Register = () => {
                   placeholder="Enter your designation"
                 />
                 {errors.designation && (
-                  <p className="text-error text-sm">
+                  <p className="text-red-500 text-sm">
                     {errors.designation.message}
                   </p>
                 )}
@@ -137,13 +138,12 @@ const Register = () => {
             </div>
           </fieldset>
 
-          {/* Fieldset: Email & Password */}
-          <fieldset className="border border-base-300 p-4 rounded">
-            <legend className="text-sm font-medium text-base-content mb-2">
+          {/* Credentials */}
+          <fieldset className="border border-gray-200 p-4 rounded-lg">
+            <legend className="text-gray-700 font-semibold text-sm mb-2">
               Credentials
             </legend>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              {/* Email */}
               <div>
                 <label className="label-text">Email</label>
                 <input
@@ -159,11 +159,9 @@ const Register = () => {
                   placeholder="Enter your email"
                 />
                 {errors.email && (
-                  <p className="text-error text-sm">{errors.email.message}</p>
+                  <p className="text-red-500 text-sm">{errors.email.message}</p>
                 )}
               </div>
-
-              {/* Password */}
               <div>
                 <label className="label-text">Password</label>
                 <input
@@ -178,16 +176,66 @@ const Register = () => {
                     pattern: {
                       value: /^(?=.*[A-Z])(?=.*[!@#$%^&*])/,
                       message:
-                        "Password must contain at least one capital letter and one special character",
+                        "Password must contain one capital letter & special character",
                     },
                   })}
-                  placeholder="Enter your password"
+                  placeholder="Enter password"
                 />
                 {errors.password && (
-                  <p className="text-error text-sm">
+                  <p className="text-red-500 text-sm">
                     {errors.password.message}
                   </p>
                 )}
+              </div>
+            </div>
+          </fieldset>
+
+          {/* Employment Details */}
+          <fieldset className="border border-gray-200 p-4 rounded-lg">
+            <legend className="text-gray-700 font-semibold text-sm mb-2">
+              Employment Details
+            </legend>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div>
+                <label className="label-text">Bank Account No</label>
+                <input
+                  type="number"
+                  className="input input-bordered w-full"
+                  {...register("bank_account_no", {
+                    required: "Bank account is required",
+                  })}
+                  placeholder="Enter bank account number"
+                />
+                {errors.bank_account_no && (
+                  <p className="text-red-500 text-sm">
+                    {errors.bank_account_no.message}
+                  </p>
+                )}
+              </div>
+              <div>
+                <label className="label-text mb-1 block">Select Role</label>
+                <Listbox value={selectedRole} onChange={setSelectedRole}>
+                  <div className="relative">
+                    <Listbox.Button className="input input-bordered w-full flex justify-between items-center">
+                      {selectedRole} <IoIosArrowDown />
+                    </Listbox.Button>
+                    <Listbox.Options className="absolute z-10 mt-1 w-full bg-white border rounded shadow-md">
+                      {roles.map((role) => (
+                        <Listbox.Option
+                          key={role}
+                          value={role}
+                          className={({ active }) =>
+                            `cursor-pointer px-4 py-2 ${
+                              active ? "bg-blue-600 text-white" : ""
+                            }`
+                          }
+                        >
+                          {role}
+                        </Listbox.Option>
+                      ))}
+                    </Listbox.Options>
+                  </div>
+                </Listbox>
               </div>
             </div>
           </fieldset>
@@ -202,64 +250,9 @@ const Register = () => {
               className="file-input file-input-bordered w-full"
             />
             {errors.image && (
-              <p className="text-error text-sm">{errors.image.message}</p>
+              <p className="text-red-500 text-sm">{errors.image.message}</p>
             )}
           </div>
-
-          {/* Fieldset: Bank Account & Role */}
-          <fieldset className="border border-base-300 p-4 rounded">
-            <legend className="text-sm font-medium text-base-content mb-2">
-              Employment Details
-            </legend>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              {/* Bank Account */}
-              <div>
-                <label className="label-text">Bank Account No</label>
-                <input
-                  type="number"
-                  className="input input-bordered w-full"
-                  {...register("bank_account_no", {
-                    required: "Bank account is required",
-                  })}
-                  placeholder="Enter your bank account number"
-                />
-                {errors.bank_account_no && (
-                  <p className="text-error text-sm">
-                    {errors.bank_account_no.message}
-                  </p>
-                )}
-              </div>
-
-              {/* Role Dropdown */}
-              <div>
-                <label className="label-text mb-1 block">Select Role</label>
-                <Listbox value={selectedRole} onChange={setSelectedRole}>
-                  <div className="relative">
-                    <Listbox.Button className="input input-bordered w-full flex justify-between items-center">
-                      {selectedRole}
-                      <IoIosArrowDown />
-                    </Listbox.Button>
-                    <Listbox.Options className="absolute z-10 mt-1 w-full bg-base-200 border rounded shadow-md">
-                      {roles.map((role) => (
-                        <Listbox.Option
-                          key={role}
-                          value={role}
-                          className={({ active }) =>
-                            `cursor-pointer px-4 py-2 ${
-                              active ? "bg-primary text-white" : ""
-                            }`
-                          }
-                        >
-                          {role}
-                        </Listbox.Option>
-                      ))}
-                    </Listbox.Options>
-                  </div>
-                </Listbox>
-              </div>
-            </div>
-          </fieldset>
-
           {/* Salary */}
           <div>
             <label className="label-text">Salary</label>
@@ -271,37 +264,42 @@ const Register = () => {
               placeholder="Enter your salary"
             />
             {errors.salary && (
-              <p className="text-error text-sm">{errors.salary.message}</p>
+              <p className="text-red-500 text-sm">{errors.salary.message}</p>
             )}
           </div>
 
           {/* Submit */}
-          <button type="submit" className="btn btn-primary w-full">
+          <button
+            type="submit"
+            className="btn btn-primary w-full py-3 text-lg flex justify-center items-center gap-2"
+          >
             {loading ? (
-              <TbFidgetSpinner className="animate-spin m-auto" />
+              <TbFidgetSpinner className="animate-spin text-xl" />
             ) : (
               "Continue"
             )}
           </button>
         </form>
 
-        {/* Divider */}
-        <div className="divider">OR</div>
+        {/* OR Divider */}
+        <div className="divider my-6">OR</div>
 
         {/* Google Sign In */}
         <button
           type="button"
-          className="btn btn-outline w-full flex items-center gap-2"
+          className="btn btn-outline w-full flex items-center justify-center gap-2 py-3"
           onClick={handleGoogleSignIn}
         >
-          <FcGoogle size={24} />
-          Continue with Google
+          <FcGoogle size={24} /> Continue with Google
         </button>
 
         {/* Footer */}
-        <p className="mt-4 text-sm text-center">
+        <p className="mt-6 text-sm text-center text-gray-500">
           Already have an account?{" "}
-          <Link to="/auth/login" className="text-secondary hover:underline">
+          <Link
+            to="/auth/login"
+            className="text-blue-600 hover:underline font-medium"
+          >
             <HoverUnderlineText>Login</HoverUnderlineText>
           </Link>
         </p>
