@@ -50,7 +50,7 @@ export default function NewsletterSection() {
   };
 
   return (
-    <section className="relative overflow-hidden px-4 md:px-10 mt-20">
+    <section className="relative overflow-hidden px-4 md:px-10 ">
       {/* Background */}
       <div className="absolute inset-0 -z-10">
         <div className="absolute -inset-[10%] bg-gradient-to-br from-emerald-500/10 via-teal-500/10 to-cyan-500/10 dark:from-emerald-400/10 dark:via-sky-400/10 dark:to-indigo-400/10 blur-3xl" />
