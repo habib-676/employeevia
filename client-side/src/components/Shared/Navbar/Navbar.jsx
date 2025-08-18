@@ -15,8 +15,8 @@ const Navbar = () => {
     toast.success("Successfully Logged Out");
   };
   return (
-    <div className="pt-5 border-b border-gray-300 shadow-2xs pb-3 flex items-center justify-between bg-base-200 xl:px-20 md:px-10 sm:px-2 px-4">
-      <div className="border border-primary rounded-3xl py-2 px-10">
+    <div className="pt-5 border-b border-gray-300 shadow-2xs pb-3 flex items-center justify-between bg-base-200 xl:px-20 md:px-10 sm:px-2 px-4 gap-2">
+      <div className="border border-primary rounded-3xl py-2 px-5 md:px-7 lg:px-10 ">
         <Logo />
       </div>
       <div className="border border-primary hidden md:flex font-medium justify-between flex-1 rounded-3xl py-2 px-5">

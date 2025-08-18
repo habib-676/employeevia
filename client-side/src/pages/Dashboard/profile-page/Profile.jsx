@@ -32,7 +32,7 @@ const Profile = () => {
           <p className="p-2 px-4 text-xs text-white bg-lime-500 rounded-full">
             {role.toUpperCase()}
           </p>
-          <p className="mt-2 text-xl font-medium text-gray-800 ">
+          <p className="mt-2 lg:text-xl font-medium text-gray-800 ">
             User Id: {user?.uid}
           </p>
           <div className="w-full p-2 mt-4 rounded-lg">

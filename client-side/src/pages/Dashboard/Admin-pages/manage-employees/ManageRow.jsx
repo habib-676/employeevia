@@ -121,7 +121,7 @@ const ManageRow = ({ single }) => {
           <input
             type="number"
             defaultValue={salary}
-            className="input input-neutral "
+            className="input input-neutral w-14"
             name="newSalary"
           />
           <input
