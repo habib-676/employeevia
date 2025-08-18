@@ -1,3 +1,4 @@
+import NewsletterSection from "./NewsTeller/NewsTellerSection";
 import Team from "./our-team/Team";
 import Services from "./Services/Services";
 import Slider from "./Slider/Slider";
@@ -21,6 +22,9 @@ const Home = () => {
       </div>
       <div>
         <Team teamPromise={teamPromise}></Team>
+      </div>
+      <div>
+        <NewsletterSection></NewsletterSection>
       </div>
     </div>
   );
